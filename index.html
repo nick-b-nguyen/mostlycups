@@ -14,77 +14,49 @@
 <body>
 
   <header class="site-header">
-    <a class="logo" href="#top">Your Name</a>
-    <nav>
-      <a href="#work">Work</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <!-- EDIT: your name / studio name -->
+    <p class="logo">Your Name</p>
   </header>
 
-  <main id="top">
-
-    <section class="intro">
-      <h1>Handmade ceramics</h1>
-      <p>Wheel-thrown and hand-built stoneware, made in small batches.</p>
-    </section>
+  <main>
 
     <!-- ===== GALLERY =====
-         To add a piece: copy one <figure> block, change the image path,
-         alt text, title and description. Put photos in the images/ folder. -->
-    <section id="work" class="gallery">
+         Photos keep their original shape. To add a piece, copy one <figure>
+         block and change the image path and alt text. The <figcaption> title
+         is optional — delete it for a photo-only piece. -->
+    <section class="gallery">
 
       <figure class="piece">
         <img src="images/piece-1.svg" alt="Speckled stoneware vase" loading="lazy">
-        <figcaption>
-          <h2>Speckled Vase</h2>
-          <p>Stoneware, satin white glaze. 9 in tall. 2026.</p>
-        </figcaption>
+        <figcaption>Speckled Vase</figcaption>
       </figure>
 
       <figure class="piece">
         <img src="images/piece-2.svg" alt="Set of tea bowls" loading="lazy">
-        <figcaption>
-          <h2>Tea Bowls</h2>
-          <p>Set of four, tenmoku glaze. 2026.</p>
-        </figcaption>
+        <figcaption>Tea Bowls</figcaption>
       </figure>
 
       <figure class="piece">
         <img src="images/piece-3.svg" alt="Wide serving platter" loading="lazy">
-        <figcaption>
-          <h2>Serving Platter</h2>
-          <p>Hand-built, celadon glaze. 14 in across. 2025.</p>
-        </figcaption>
       </figure>
 
       <figure class="piece">
         <img src="images/piece-4.svg" alt="Lidded jar" loading="lazy">
-        <figcaption>
-          <h2>Lidded Jar</h2>
-          <p>Wood-fired stoneware. 7 in tall. 2025.</p>
-        </figcaption>
+        <figcaption>Lidded Jar</figcaption>
       </figure>
 
       <figure class="piece">
         <img src="images/piece-5.svg" alt="Pair of mugs" loading="lazy">
-        <figcaption>
-          <h2>Mugs</h2>
-          <p>Porcelain, shino glaze. 2025.</p>
-        </figcaption>
       </figure>
 
       <figure class="piece">
         <img src="images/piece-6.svg" alt="Small bud vases" loading="lazy">
-        <figcaption>
-          <h2>Bud Vases</h2>
-          <p>Series of five, ash glaze. 2025.</p>
-        </figcaption>
+        <figcaption>Bud Vases</figcaption>
       </figure>
 
     </section>
 
-    <section id="about" class="about">
+    <section class="about">
       <img src="images/portrait.svg" alt="Portrait of the artist in the studio">
       <div>
         <h2>About</h2>
@@ -94,7 +66,7 @@
       </div>
     </section>
 
-    <section id="contact" class="contact">
+    <section class="contact">
       <h2>Contact</h2>
       <p>For commissions, questions, or just to say hello:</p>
       <!-- EDIT: your email and Instagram -->
@@ -126,9 +98,10 @@
 
     document.querySelectorAll('.piece img').forEach(img => {
       img.addEventListener('click', () => {
+        const cap = img.closest('figure').querySelector('figcaption');
         boxImg.src = img.src;
         boxImg.alt = img.alt;
-        boxCap.textContent = img.closest('figure').querySelector('h2').textContent;
+        boxCap.textContent = cap ? cap.textContent : '';
         box.hidden = false;
       });
     });
