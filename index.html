@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- EDIT: your name / studio name -->
+  <title>Your Name — Ceramics</title>
+  <meta name="description" content="Handmade ceramics by Your Name.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="logo" href="#top">Your Name</a>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <section class="intro">
+      <h1>Handmade ceramics</h1>
+      <p>Wheel-thrown and hand-built stoneware, made in small batches.</p>
+    </section>
+
+    <!-- ===== GALLERY =====
+         To add a piece: copy one <figure> block, change the image path,
+         alt text, title and description. Put photos in the images/ folder. -->
+    <section id="work" class="gallery">
+
+      <figure class="piece">
+        <img src="images/piece-1.svg" alt="Speckled stoneware vase" loading="lazy">
+        <figcaption>
+          <h2>Speckled Vase</h2>
+          <p>Stoneware, satin white glaze. 9 in tall. 2026.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="piece">
+        <img src="images/piece-2.svg" alt="Set of tea bowls" loading="lazy">
+        <figcaption>
+          <h2>Tea Bowls</h2>
+          <p>Set of four, tenmoku glaze. 2026.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="piece">
+        <img src="images/piece-3.svg" alt="Wide serving platter" loading="lazy">
+        <figcaption>
+          <h2>Serving Platter</h2>
+          <p>Hand-built, celadon glaze. 14 in across. 2025.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="piece">
+        <img src="images/piece-4.svg" alt="Lidded jar" loading="lazy">
+        <figcaption>
+          <h2>Lidded Jar</h2>
+          <p>Wood-fired stoneware. 7 in tall. 2025.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="piece">
+        <img src="images/piece-5.svg" alt="Pair of mugs" loading="lazy">
+        <figcaption>
+          <h2>Mugs</h2>
+          <p>Porcelain, shino glaze. 2025.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="piece">
+        <img src="images/piece-6.svg" alt="Small bud vases" loading="lazy">
+        <figcaption>
+          <h2>Bud Vases</h2>
+          <p>Series of five, ash glaze. 2025.</p>
+        </figcaption>
+      </figure>
+
+    </section>
+
+    <section id="about" class="about">
+      <img src="images/portrait.svg" alt="Portrait of the artist in the studio">
+      <div>
+        <h2>About</h2>
+        <!-- EDIT: your bio -->
+        <p>I'm a ceramic artist working out of a small studio in ________. I started on the wheel in ____ and have been chasing quiet, functional forms ever since.</p>
+        <p>Most of my work is stoneware fired to cone 10. I'm drawn to glazes that break over texture and to pieces meant to be used every day.</p>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Contact</h2>
+      <p>For commissions, questions, or just to say hello:</p>
+      <!-- EDIT: your email and Instagram -->
+      <p class="links">
+        <a href="mailto:you@example.com">you@example.com</a>
+        <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener">Instagram</a>
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Your Name</p>
+  </footer>
+
+  <!-- Lightbox: click any photo to see it large -->
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="close" aria-label="Close">&times;</button>
+    <img alt="">
+    <p class="caption"></p>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const box = document.getElementById('lightbox');
+    const boxImg = box.querySelector('img');
+    const boxCap = box.querySelector('.caption');
+
+    document.querySelectorAll('.piece img').forEach(img => {
+      img.addEventListener('click', () => {
+        boxImg.src = img.src;
+        boxImg.alt = img.alt;
+        boxCap.textContent = img.closest('figure').querySelector('h2').textContent;
+        box.hidden = false;
+      });
+    });
+    const close = () => { box.hidden = true; };
+    box.addEventListener('click', e => { if (e.target !== boxImg) close(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+  </script>
+</body>
+</html>
