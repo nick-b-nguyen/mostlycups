@@ -40,26 +40,27 @@ img { display: block; max-width: 100%; }
 main { padding: 0 clamp(1rem, 5vw, 4rem); max-width: 1200px; margin: 0 auto; }
 
 /* ----- Gallery -----
-   Masonry-style columns: every photo keeps its own aspect ratio.
-   Change column-width to make photos bigger or smaller. */
+   An even grid of square cells. Each photo is scaled to fit inside its
+   cell without cropping; leftover space is just background.
+   Change minmax(260px…) to make cells bigger or smaller, and
+   aspect-ratio to change the cell shape (e.g. 4 / 5 for taller cells). */
 .gallery {
-  column-width: 300px;
-  column-gap: 1.75rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2.5rem 1.75rem;
   padding-bottom: 5rem;
-}
-.piece {
-  break-inside: avoid;
-  margin-bottom: 1.75rem;
 }
 .piece img {
   width: 100%;
-  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
   cursor: zoom-in;
   transition: opacity 0.2s;
 }
 .piece img:hover { opacity: 0.88; }
 .piece figcaption {
   padding-top: 0.5rem;
+  text-align: center;
   font-family: var(--serif);
   font-size: 1.15rem;
 }
