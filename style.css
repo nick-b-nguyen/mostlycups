@@ -42,13 +42,13 @@ main { padding: 0 clamp(1rem, 5vw, 4rem); max-width: 1200px; margin: 0 auto; }
 /* ----- Gallery -----
    An even grid of columns. Every photo fills its column's width and keeps
    its own aspect ratio, so tall pieces make a taller row. Each photo + title
-   is one unit, vertically centered in its row; leftover space is background.
+   is one unit, aligned to the bottom of its row; leftover space is background.
    Change minmax(260px…) to make columns wider or narrower. */
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 2.5rem 1.75rem;
-  align-items: center;
+  align-items: end;               /* shorter items sit at the bottom of the row */
   padding-bottom: 5rem;
 }
 .piece img {
