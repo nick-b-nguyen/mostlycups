@@ -40,8 +40,10 @@ img { display: block; max-width: 100%; }
 main { padding: 0 clamp(1rem, 5vw, 4rem); max-width: 1200px; margin: 0 auto; }
 
 /* ----- Gallery -----
-   An even grid of square cells. Each photo is scaled to fit inside its
-   cell without cropping; leftover space is just background.
+   An even grid of square cells. Each photo + its title is treated as one
+   unit: the unit is scaled to fit inside the cell without cropping, then
+   centered; leftover space is just background. The title sits directly
+   under the photo, left-aligned with its edge.
    Change minmax(260px…) to make cells bigger or smaller, and
    aspect-ratio to change the cell shape (e.g. 4 / 5 for taller cells). */
 .gallery {
@@ -50,19 +52,35 @@ main { padding: 0 clamp(1rem, 5vw, 4rem); max-width: 1200px; margin: 0 auto; }
   gap: 2.5rem 1.75rem;
   padding-bottom: 5rem;
 }
-.piece img {
-  width: 100%;
+.piece {
+  --caption-h: 2.4rem;            /* space reserved for a one-line title */
   aspect-ratio: 1 / 1;
-  object-fit: contain;
+  container-type: size;
+  display: grid;
+  grid-template-columns: auto;    /* column = width of the photo */
+  place-content: center;
+}
+.piece img {
+  width: auto;
+  height: auto;
+  max-width: 100cqw;
+  max-height: 100cqh;
   cursor: zoom-in;
   transition: opacity 0.2s;
 }
+.piece:has(figcaption) img { max-height: calc(100cqh - var(--caption-h)); }
 .piece img:hover { opacity: 0.88; }
 .piece figcaption {
+  width: 0;
+  min-width: 100%;                /* match photo width, never widen it */
+  height: var(--caption-h);
   padding-top: 0.5rem;
-  text-align: center;
   font-family: var(--serif);
   font-size: 1.15rem;
+  line-height: 1.6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* ----- About ----- */
